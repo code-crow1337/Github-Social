@@ -1,10 +1,14 @@
-import express from "express";
-import api from './apiRoutes'
+import express, { NextFunction, Request, Response } from "express";
+import api from "./apiRoutes";
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
   res.send("Start page");
 });
-router.use('/api',api);
-
-export default router; 
+router.use("/api", api);
+router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
+export default router;
