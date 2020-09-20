@@ -2,6 +2,7 @@ import { readFile } from "fs";
 import { promisify } from "util";
 import fetch, { Headers } from "node-fetch";
 import { Follower, User, Repo,UserDataType } from "../../types";
+import { response } from "express";
 
 
 const url = 'https://api.github.com/users/';
@@ -35,7 +36,7 @@ const fetchExternalData = async (username: string) => {
       }),
     });
     const userData = await response.json();
-
+    console.log(response);
     return userData;
   } catch (error) {
     throw new Error(

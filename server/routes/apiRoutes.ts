@@ -22,7 +22,11 @@ api.get(
     } = req;
     try {
       const response = await fetchdata(username);
-      if(response.length === 0 || (/Not Found/ig).test(response)) return res.status(404).json({message:`${username} dosen't have any repos`}); 
+      if(response.length === 0 || (/message/ig).test(response)) {
+        const message = (/message/ig).test(response) ? JSON.parse(response).message : `${username} dosen't have any repos`
+        return res.status(404).json({message:message}); 
+
+      }
       const userFormatedData = await formateData(response);
       res.status(200).json(userFormatedData);
     } catch (error) {
