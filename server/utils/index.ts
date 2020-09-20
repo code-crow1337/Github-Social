@@ -1,7 +1,7 @@
 import { readFile } from "fs";
 import { promisify } from "util";
 import fetch, { Headers } from "node-fetch";
-import { Follower } from "../../types";
+import { Follower, User, Repo,UserDataType } from "../../types";
 
 
 const url = 'https://api.github.com/users/';
@@ -15,9 +15,9 @@ const readMockdata = async (path: string) => {
   }
 };
 
-const fetchdata = async (username: string) => {
+const fetchdata = async (username: string):Promise<string> => {
   try {
-    let temp: string | any;
+    let temp: string;
     process.env.NODE_ENV = "production"
       ? (temp = await fetchExternalData(username))
       : (temp = await readMockdata("./mockdata/user.json"));
@@ -52,7 +52,7 @@ const fetchFollowers = async (username: string, type: string) => {
       }),
     });
     const followers = await response.json();
-    return followers.map((follower: any) => {
+    return followers.map((follower: Follower) => {
       return {
         username: follower.login,
         avatar_url: follower.avatar_url,
@@ -82,7 +82,7 @@ const fetchLanguage = async (url: string) => {
     );
   }
 };
-const getUserData = async (ownerData: any) => {
+const getUserData = async (ownerData: User):Promise<User> => {
   const { login, avatar_url, html_url } = ownerData;
   let followers: Follower[] = [];
   let following: Follower[] = [];
@@ -101,10 +101,10 @@ const getUserData = async (ownerData: any) => {
     following,
   };
 };
-const formateData = async (responseData: string) => {
+const formateData = async (responseData: string):Promise<UserDataType> => {
   const parsedObj = JSON.parse(responseData);
   const reposInfo = await Promise.all(
-    parsedObj.map(async (obj: any) => {
+    parsedObj.map(async (obj: Repo) => {
       const languages = await fetchLanguage(obj.languages_url);
       return {
         name: obj.name,
