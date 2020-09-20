@@ -7,13 +7,17 @@ const useStyles = makeStyles({
   container: {
     backgroundColor: fade("#fff", 0.7),
   },
+  title:{
+    color: "#318150",
+    fontWeight:'bold'
+  }
 });
 
 export default function HeadTitle({ name }: { name: string }) {
   const classes = useStyles();
   return (
     <Grid className={classes.container} item xs={12} sm={12} md={12}>
-      <Typography variant="h4" component="h4">
+      <Typography variant="h4" component="h4" className={classes.title}>
         {name}
       </Typography>
     </Grid>

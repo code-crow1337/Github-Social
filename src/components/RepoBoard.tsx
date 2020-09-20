@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import HeadTitle from "./HeadTitle";
-import { Repo, userData } from "../../types";
+import { Repo,userDataType } from "../../types";
 import GitCard from "./GitCard";
 import Grid from "@material-ui/core/Grid";
 
@@ -28,7 +28,7 @@ const ReposCards = ({ repos }: { repos: Repo[] }): any => {
   return (
     <Grid container spacing={3} className={classes.container}>
         {repos.map((repo: Repo) => {
-          return <GitCard repoInfo={repo} />;
+          return <GitCard repoInfo={repo} key={`${repo.name}`} />;
         })}
     </Grid>
   );
@@ -36,7 +36,7 @@ const ReposCards = ({ repos }: { repos: Repo[] }): any => {
 export default function RepoBoard({
   userData,
 }: {
-  userData: userData;
+  userData: userDataType;
 }): React.ReactElement {
   const {
     repos,

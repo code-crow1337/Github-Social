@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p",
-    "dev": "nodemon build/server.js",
-    "start": "nodemon index.ts"
+    "dev": "NODE_ENV=development nodemon index.ts",
+    "start": "NODE_ENV=production nodemon index.ts"
   },
   "author": "Josephine Een (code-crow1337)",
   "license": "ISC",

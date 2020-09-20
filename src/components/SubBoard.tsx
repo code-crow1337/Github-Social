@@ -18,6 +18,7 @@ const renderSubs = (following: Follower[]): any => {
       {following.map((user: Follower) => {
         return (
           <UserDetails
+            key={user.username}
             name={user.username}
             img={user.avatar_url}
             size="small"

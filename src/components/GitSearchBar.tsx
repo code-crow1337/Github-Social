@@ -32,7 +32,6 @@ export default function SearchBar({
   }, [searchQuery, dispatch]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     const {
       target: { value },
     } = event;

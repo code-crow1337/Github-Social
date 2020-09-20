@@ -27,9 +27,9 @@ const reducer = (state: any, action: any) => {
 function GitAppBoard() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const classes = useStyles();
-  console.log(state);
 
   const renderUserInfo = () => {
+    if(state.userData.message) return <HeadTitle name={state.userData.message} />
     const {
       userData: { userInfo },
       userData,
