@@ -37,8 +37,6 @@ export default function GitCard({ repoInfo }: { repoInfo: Repo }) {
     url,
     description,
     languages,
-    created,
-    latest_update,
     clone_url,
   } = repoInfo;
   const classes = useStyles();
@@ -61,7 +59,7 @@ export default function GitCard({ repoInfo }: { repoInfo: Repo }) {
         <Card
           variant="outlined"
           className={classes.root}
-          key={`${repoInfo.name}`}
+          key={`${name}`}
         >
           <CardContent>
             <Typography
@@ -69,19 +67,19 @@ export default function GitCard({ repoInfo }: { repoInfo: Repo }) {
               color="textSecondary"
               gutterBottom
             >
-              {repoInfo.name}
+              {name}
             </Typography>
             <Typography variant="body2" component="p">
-              {repoInfo.description}
+              {description}
             </Typography>
-            <Box m={1}>{renderLanguage(repoInfo.languages)}</Box>
+            <Box m={1}>{renderLanguage(languages)}</Box>
           </CardContent>
           <CardActions className={classes.spacing}>
-            <Button size="medium" href={repoInfo.url}>
+            <Button size="medium" href={url}>
               <FontAwesomeIcon size="3x" icon={faGithub} />
               <Typography variant="caption">Go to Repo</Typography>
             </Button>
-            <Button size="medium" href={repoInfo.clone_url}>
+            <Button size="medium" href={clone_url}>
               <FontAwesomeIcon size="3x" icon={faCodeBranch} />
               <Typography variant="caption">Git Clone</Typography>
             </Button>

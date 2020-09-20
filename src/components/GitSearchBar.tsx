@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-export default function SearchBar({dispatch}:{dispatch:any}): React.ReactElement {
+export default function SearchBar({
+  dispatch,
+}: {
+  dispatch: any;
+}): React.ReactElement {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentSearch, setcurrentSearch] = useState<string>(searchQuery);
- const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const setValue = setTimeout(() => setSearchQuery(currentSearch), 1500);
@@ -16,13 +20,12 @@ export default function SearchBar({dispatch}:{dispatch:any}): React.ReactElement
   }, [currentSearch]);
 
   useEffect(() => {
-    console.log('searchquery triggered');
     const infoData = async () => {
-      if(searchQuery === "") return; 
+      if (searchQuery === "") return;
       setIsLoading(true);
       const response = await fetch(`/api/search/${searchQuery}/`);
       const gitHubUserInfo = await response.json();
-      dispatch({type:'updateState', payload:gitHubUserInfo});
+      dispatch({ type: "updateState", payload: gitHubUserInfo });
       setIsLoading(false);
     };
     infoData();
@@ -35,23 +38,29 @@ export default function SearchBar({dispatch}:{dispatch:any}): React.ReactElement
     } = event;
     setcurrentSearch(value);
   };
-  
+
   return (
     <>
-    <Box component="div">
-      <form noValidate autoComplete="off">
-        <TextField
-          id="outlined-basic"
-          label="GitHub Usersname"
-          variant="outlined"
-          value={currentSearch}
-          onChange={handleChange}
-        />
-      </form>
-    </Box>
-    <Box>
-    {isLoading ? <CircularProgress /> : ''}
-    </Box>
+      <Box component="div">
+        <form noValidate autoComplete="off">
+          <TextField
+            id="outlined-basic"
+            label="GitHub Usersname"
+            variant="outlined"
+            value={currentSearch}
+            onChange={handleChange}
+          />
+        </form>
+      </Box>
+      <Box>
+        {isLoading ? (
+          <Box m={8}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          ""
+        )}
+      </Box>
     </>
   );
 }

@@ -7,8 +7,7 @@ import GitAppBoard from "./components/GitAppBoard";
 function App() {
   return (
     <>
-
-        <div className="App App-bg">
+        <div className="App">
           <Container maxWidth="lg">
           <GitAppBoard />
           </Container>

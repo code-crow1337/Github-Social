@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import RepoHead from "./RepoHead";
-import { userData, Repo } from "../../types";
+import HeadTitle from "./HeadTitle";
+import { Repo, userData } from "../../types";
 import GitCard from "./GitCard";
 import Grid from "@material-ui/core/Grid";
 
@@ -38,14 +38,12 @@ export default function RepoBoard({
 }: {
   userData: userData;
 }): React.ReactElement {
-  console.log(userData);
   const {
-    userInfo: { login },
     repos,
   } = userData;
   return (
     <div>
-      <RepoHead name={login} />
+      <HeadTitle name="Repositories" />
       <ReposCards repos={repos} />
     </div>
   );
