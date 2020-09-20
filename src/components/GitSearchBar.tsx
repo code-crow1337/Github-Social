@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import TextField from "@material-ui/core/TextField";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default function SearchBar(): React.ReactElement {
+export default function SearchBar({dispatch}:{dispatch:any}): React.ReactElement {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentSearch, setcurrentSearch] = useState<string>(searchQuery);
-  const [userData, setUserData] = useState<Array<number> | undefined>([]);
+ const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const setValue = setTimeout(() => setSearchQuery(currentSearch), 1500);
@@ -14,26 +15,18 @@ export default function SearchBar(): React.ReactElement {
     };
   }, [currentSearch]);
 
-/*   const getData = async () => {
-    const response = await fetch("/api", {
-      body: JSON.stringify(searchQuery),
-    });
-    const gitHubUserInfo = await response.json();
-    console.log("Got the info", gitHubUserInfo);
-    return gitHubUserInfo;
-  };
- */
   useEffect(() => {
     console.log('searchquery triggered');
     const infoData = async () => {
       if(searchQuery === "") return; 
+      setIsLoading(true);
       const response = await fetch(`/api/search/${searchQuery}/`);
       const gitHubUserInfo = await response.json();
-      
-      setUserData(gitHubUserInfo);
+      dispatch({type:'updateState', payload:gitHubUserInfo});
+      setIsLoading(false);
     };
     infoData();
-  }, [searchQuery]);
+  }, [searchQuery, dispatch]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value);
@@ -42,8 +35,9 @@ export default function SearchBar(): React.ReactElement {
     } = event;
     setcurrentSearch(value);
   };
-  console.log('Fronted I have recived information', userData);
+  
   return (
+    <>
     <Box component="div">
       <form noValidate autoComplete="off">
         <TextField
@@ -55,5 +49,9 @@ export default function SearchBar(): React.ReactElement {
         />
       </form>
     </Box>
+    <Box>
+    {isLoading ? <CircularProgress /> : ''}
+    </Box>
+    </>
   );
 }
