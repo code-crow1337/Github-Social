@@ -2,9 +2,9 @@ Coding test for Futurice.
 Requirements: Create an App or Web serive
 Use Github's API (REST or Graphql).
 
-I first got the idea to search on a specifc user name to see their repositories. After looking through the documentation I saw the possiblity to make it more like a "social" app. The GitHub API gave the possibility to get info for a specific user who they are following and their followers. This is just a beginning face and has many possibilites. User authentication, chat, or reuse the backend for a mobile application. 
+I first got the idea to search on a specifc user name to see their repositories. After looking through the documentation I saw the possiblity to make it more like a "social" app. The GitHub API gave the possibility to get info for a specific user who they are following and their followers. This is just an early stage and has many possibilites, for example user authentication, chat, or reuse the backend for a mobile application. 
 
-I took a litte bit longer then expected on this assignment cause of how a blast I was having of creating it. 
+I took a litte bit longer then expected on this assignment cause I was having a blast creating it. 
 
 #### Screenshot of the home page
 ![GitHub User Info App](https://github.com/code-crow1337/Github-Social/blob/backEnd/github_user_info.png)
@@ -31,4 +31,4 @@ I took a litte bit longer then expected on this assignment cause of how a blast 
 
 ### Needs to fix
 1. Refactor code for more scalability as well readability. 
-2. Some styling refactoring to make a more beutiful API.
+2. Some styling refactoring to make a more beutiful App.
