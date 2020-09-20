@@ -101,7 +101,7 @@ const getUserData = async (ownerData: User):Promise<User> => {
     following,
   };
 };
-const formateData = async (responseData: string):Promise<UserDataType> => {
+const formateData = async (responseData: string) => {
   const parsedObj = JSON.parse(responseData);
   const reposInfo = await Promise.all(
     parsedObj.map(async (obj: Repo) => {

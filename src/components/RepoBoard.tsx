@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import HeadTitle from "./HeadTitle";
-import { Repo,userDataType } from "../../types";
+import { Repo,UserDataType } from "../../types";
 import GitCard from "./GitCard";
 import Grid from "@material-ui/core/Grid";
 
@@ -36,7 +36,7 @@ const ReposCards = ({ repos }: { repos: Repo[] }): any => {
 export default function RepoBoard({
   userData,
 }: {
-  userData: userDataType;
+  userData: UserDataType;
 }): React.ReactElement {
   const {
     repos,

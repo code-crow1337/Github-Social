@@ -32,7 +32,7 @@ export default function UserDetails({
   link,
   items,
 }: {
-  name: string;
+  name?: string;
   img: string;
   size: string;
   link: string;
