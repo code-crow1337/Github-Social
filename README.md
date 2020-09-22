@@ -27,7 +27,7 @@ I took a litte bit longer then expected on this assignment cause I was having a 
 3. A CTA BTN on search to make it more userfriendly then with 1500ms seconds for possible changes and then fire it to the backend. 
 4. Using more of the Github API data to present and consume the information.
 5. Navigation. 
-6. Try to use the Graphql version of the Github API for learning puropses.  
+6. Try to use the Graphql version of the Github API for learning purposes.  
 
 ### Needs to fix
 1. Refactor code for more scalability as well readability. 
