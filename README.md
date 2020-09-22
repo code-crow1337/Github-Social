@@ -31,4 +31,4 @@ I took a litte bit longer then expected on this assignment cause I was having a 
 
 ### Needs to fix
 1. Refactor code for more scalability as well readability. 
-2. Some styling refactoring to make a more beutiful App.
+2. Some styling refactoring to make a more beautiful App.
