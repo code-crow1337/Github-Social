@@ -21,16 +21,18 @@ api.get(
       params: { username },
     } = req;
     try {
-      const response = await fetchdata(username);
-      if(response.length === 0 || (/message/ig).test(response)) {
-        const message = (/message/ig).test(response) ? JSON.parse(response).message : `${username} dosen't have any repos`
-        return res.status(404).json({message:message}); 
 
+      const response:string | any = await fetchdata(username);
+
+      if(response.length === 0 || (/message/ig).test(response)) {
+  /*       const message = (/message/ig).test(response) ? JSON.parse(response).message : `${username} dosen't have any repos`;
+        return res.status(404).json({message:message});  */
+        throw response;
       }
       const userFormatedData = await formateData(response);
-      res.status(200).json(userFormatedData);
+      res.status(200).json(userFormatedData); 
     } catch (error) {
-      next(error);
+      next(error); 
     }
   }
 );

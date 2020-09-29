@@ -9,6 +9,6 @@ router.get("/", (req, res) => {
 router.use("/api", api);
 router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
-  res.status(500).send("Something broke!");
+  res.status(500).json('Woops internal Server Error!');
 });
 export default router;

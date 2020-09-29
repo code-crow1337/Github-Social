@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const useStyles = makeStyles({
   large: {
     borderRadius: 232,
@@ -42,8 +43,7 @@ export default function UserDetails({
   const sizeImg = size === "large" ? classes.large : classes.small;
   const sizeFont = size === "large" ? "h4" : "h5";
 
-
-  //TODO conditional wrapper instead of repeating the same code. 
+  //TODO conditional wrapper instead of repeating the same code.
   const RenderDetails = () => {
     return items ? (
       <Grid item xs={12} md={6} lg={3}>
@@ -54,12 +54,16 @@ export default function UserDetails({
           focusVisibleClassName={classes.focus}
         >
           <img src={img} alt={`User ${name}`} className={sizeImg} />
-          <Box m={2}>
-            <Typography variant={sizeFont} component={sizeFont}>
-              {name}
-            </Typography>
-          </Box>
+          <Typography variant={sizeFont} component={sizeFont}>
+            {name}
+          </Typography>
         </Button>
+        <Box m={2}>
+          <Button size="small">
+            <FontAwesomeIcon size="3x" icon={faGithub} />
+            <Typography variant="caption">Go to Repo</Typography>
+          </Button>
+        </Box>
       </Grid>
     ) : (
       <Grid item>

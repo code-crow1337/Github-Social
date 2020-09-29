@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function GitCard({ repoInfo }: { repoInfo: Repo }) {
+export default function GitCard({ repoInfo }: { repoInfo: Repo }):React.ReactElement {
   const {
     name,
     url,

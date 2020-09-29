@@ -23,10 +23,17 @@ export default function SearchBar({
     const infoData = async () => {
       if (searchQuery === "") return;
       setIsLoading(true);
-      const response = await fetch(`/api/search/${searchQuery}/`);
-      const gitHubUserInfo = await response.json();
-      dispatch({ type: "updateState", payload: gitHubUserInfo });
-      setIsLoading(false);
+      try {
+        const response = await fetch(`/api/search/${searchQuery}/`);
+        const gitHubUserInfo = await response.json();
+        if(!response.ok) throw new Error("Error in fetching data from backend");
+        dispatch({ type: "updateState", payload: gitHubUserInfo });
+        setIsLoading(false);
+        
+      } catch (error) {
+        setIsLoading(false);
+        dispatch({type: "errorState", payload: error.message});
+      }
     };
     infoData();
   }, [searchQuery, dispatch]);

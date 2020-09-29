@@ -19,7 +19,9 @@ const initialState = { loading: true };
 const reducer = (state: any, action: any) => {
   switch (action.type) {
     case "updateState":
-      return { loading: false, userData: action.payload };
+      return { loading: false, userData: action.payload, error:false };
+      case "errorState":
+      return { loading: false, userData: action.payload, error:true };
     default:
       return state;
   }
@@ -29,7 +31,7 @@ function GitAppBoard() {
   const classes = useStyles();
 
   const renderUserInfo = () => {
-    if(state.userData.message) return <HeadTitle name={state.userData.message} />
+    if(state.error) return <HeadTitle name={state.userData} />;
     const {
       userData: { userInfo },
       userData,
