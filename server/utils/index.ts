@@ -22,7 +22,7 @@ const fetchdata = async (username: string): Promise<string> => {
       : (temp = await readMockdata("./mockdata/user.json"));
     return temp;
   } catch (error) {
-    throw new Error(`Failed fetching data: ${error}`);
+    throw error;
   }
 };
 const fetchExternalData = async (username: string) => {
@@ -33,11 +33,14 @@ const fetchExternalData = async (username: string) => {
         Authorization: `token ${process.env.PERSONAL_TOKEN}`,
       }),
     });
+    const userData = await response.json();
+
     if (!response.ok)
       throw new Error(
-        `Error fetching the of usersname: ${username} . ErrorMessage: ${response.statusText} ErrorCode: ${response.status}`
+        `Error fetching the of Username: ${username} . User doesn't seem to exist.`
       );
-    const userData = await response.json();
+    if(userData.length === 0) throw new Error(`Username: ${username} .Exist but doesn't have any data `);
+    
     return userData;
   } catch (error) {
     throw error;

@@ -26,7 +26,7 @@ export default function SearchBar({
       try {
         const response = await fetch(`/api/search/${searchQuery}/`);
         const gitHubUserInfo = await response.json();
-        if(!response.ok) throw new Error("Error in fetching data from backend");
+        if(!response.ok) throw new Error(gitHubUserInfo.message);
         dispatch({ type: "updateState", payload: gitHubUserInfo });
         setIsLoading(false);
         

@@ -59,7 +59,7 @@ export default function UserDetails({
           </Typography>
         </Button>
         <Box m={2}>
-          <Button size="small">
+          <Button size="small" href={link}>
             <FontAwesomeIcon size="3x" icon={faGithub} />
             <Typography variant="caption">Go to Repo</Typography>
           </Button>

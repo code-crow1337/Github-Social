@@ -31,6 +31,7 @@ function GitAppBoard() {
   const classes = useStyles();
 
   const renderUserInfo = () => {
+
     if(state.error) return <HeadTitle name={state.userData} />;
     const {
       userData: { userInfo },
